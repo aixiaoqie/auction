@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<!-- dubbo相关配置 -->
+	<!-- 指定服务名称 -->
+	<dubbo:application name="auction-search-service" />
+	<!-- 指定dubbo发布服务端口 -->
+	<dubbo:protocol name="dubbo" port="20883"></dubbo:protocol>
+	<!-- 指定服务注册中心地址 -->
+	<dubbo:registry protocol="zookeeper" address="192.168.135.100:2181" />
+	<!-- 注解方式发布服务 -->
+	<dubbo:annotation package="com.auction.search.service.impl" />
+</beans>

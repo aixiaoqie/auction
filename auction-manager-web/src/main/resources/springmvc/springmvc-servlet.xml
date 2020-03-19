@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<context:property-placeholder location="classpath:config/application.properties" />
+	<!-- 视图解析器 -->
+<!-- 	<bean -->
+<!-- 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"> -->
+<!-- 		<property name="prefix" value="/WEB-INF/"></property> -->
+<!-- 		<property name="suffix" value=".html"></property> -->
+<!-- 	</bean> -->
+
+	<!-- 放行静态资源 -->
+	<mvc:default-servlet-handler />
+	<!-- 静态资源映射 -->
+<!-- 	<mvc:resources location="/WEB-INF/admin/" mapping="/admin/**" /> -->
+<!-- 	<mvc:resources location="/js/" mapping="/js/**" /> -->
+<!-- 	<mvc:resources location="/css" mapping="/css/**" /> -->
+<!-- 	<mvc:resources location="/img/" mapping="/img/**" /> -->
+<!-- 	<mvc:resources location="/plugins/" mapping="/plugins/**" /> -->
+
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="true">
+			<bean
+				class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+				<property name="supportedMediaTypes" value="application/json" />
+				<property name="features">
+					<array>
+						<value>WriteMapNullValue</value>
+						<value>WriteDateUseDateFormat</value>
+					</array>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+	<!-- 配置文件上传支持 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 支持上传文件大小 -->
+		<property name="maxUploadSize" value="1024000000"></property>
+	</bean>
+
+	<!-- 引用dubbo 服务 -->
+	<dubbo:application name="auction-manager-web" />
+	<dubbo:registry address="zookeeper://192.168.135.100:2181" />
+	<dubbo:annotation package="com.auction.manager.controller" />
+
+</beans>

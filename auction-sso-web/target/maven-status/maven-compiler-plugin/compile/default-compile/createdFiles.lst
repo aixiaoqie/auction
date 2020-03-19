@@ -1,0 +1,3 @@
+com\auction\sso\controller\LoginController.class
+com\auction\sso\controller\UserController.class
+com\auction\user\service\impl\UserDetailsServiceImpl.class

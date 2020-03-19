@@ -1,0 +1,2 @@
+com\auction\search\service\impl\ItemSearchServiceImpl.class
+com\auction\search\listener\SolrListener.class

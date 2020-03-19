@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bean:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:bean="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<!-- 在权限认证之前访问资源需要放行 -->
+	<http pattern="/shoplogin.html" security="none"></http>
+	<http pattern="/register.html" security="none"></http>
+	<http pattern="/error.html" security="none"></http>
+	<http pattern="/css/**" security="none"></http>
+	<http pattern="/js/**" security="none"></http>
+	<http pattern="/img/**" security="none"></http>
+	<http pattern="/plugins/**" security="none"></http>
+	<!-- 商家入驻url -->
+	<http pattern="/seller/add" security="none"></http>
+
+	<!-- http安全控制规则 -->
+	<http>
+		<intercept-url pattern="/**" access="hasRole('ROLE_SELLER_USER')" />
+		<!-- 表单认证 -->
+		<form-login login-page="/shoplogin.html"
+			default-target-url="/admin/index.html" always-use-default-target="true"
+			authentication-failure-url="/error.html" login-processing-url="/login" />
+		<!-- login-processing-url 登录发起地址 -->
+		<!-- 屏蔽跨域 -->
+		<csrf disabled="true" />
+		<!-- 配置ifram访问 -->
+		<headers>
+			<frame-options policy="SAMEORIGIN" />
+		</headers>
+		<!-- 退出登录配置 -->
+		<!-- logout: spring security 安全框架自动生成推出地址:/logout -->
+		<logout logout-success-url="/login.html" />
+	</http>
+
+	<!-- 配置认证管理器 -->
+	<authentication-manager>
+		<authentication-provider user-service-ref="userDetailsServiceImpl">
+			<password-encoder ref="passwordEncoder"></password-encoder>
+		</authentication-provider>
+	</authentication-manager>
+
+	<dubbo:reference id="sellerService"
+		interface="com.auction.manager.service.SellerService"></dubbo:reference>
+	<!-- 自定义认证类 -->
+	<bean:bean id="userDetailsServiceImpl"
+		class="com.auction.seller.authentication.UserDetailsServiceImpl">
+	</bean:bean>
+
+	<!-- 定义spring security安全加密算法对象 -->
+	<bean:bean id="passwordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+	</bean:bean>
+</bean:beans>

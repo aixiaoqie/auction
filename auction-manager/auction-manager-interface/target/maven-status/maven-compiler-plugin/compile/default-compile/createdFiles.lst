@@ -1,0 +1,9 @@
+com\auction\manager\service\BrandService.class
+com\auction\manager\service\TestService.class
+com\auction\manager\service\GoodsService.class
+com\auction\manager\service\TypeTemplateService.class
+com\auction\manager\service\SpecificationOptionService.class
+com\auction\manager\service\GoodsDescService.class
+com\auction\manager\service\SpecificationService.class
+com\auction\manager\service\ItemCatService.class
+com\auction\manager\service\SellerService.class

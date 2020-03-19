@@ -1,0 +1,36 @@
+{
+  "ecmaVersion": 5,
+  "ide": {
+    "scriptPaths": [
+      {
+        "type": "FOLDER",
+        "path": "src"
+      },
+      {
+        "type": "FOLDER",
+        "path": "src/main"
+      },
+      {
+        "type": "FOLDER",
+        "path": "src/main/webapp/WEB-INF"
+      }
+    ]
+  },
+  "plugins": {
+    "guess-types": {
+      
+    },
+    "outline": {
+      
+    },
+    "doc_comment": {
+      
+    },
+    "angular1": {
+      
+    }
+  },
+  "libs": [
+    "browser"
+  ]
+}

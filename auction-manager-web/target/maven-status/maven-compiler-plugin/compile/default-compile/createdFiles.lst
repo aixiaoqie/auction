@@ -1,0 +1,12 @@
+com\auction\manager\controller\SpecificationOptionController.class
+com\auction\manager\controller\SellerController.class
+com\auction\manager\controller\TypeTemplateController.class
+com\auction\manager\controller\GoodsController.class
+com\auction\manager\controller\ContentController.class
+com\auction\manager\controller\Test.class
+com\auction\manager\controller\ItemCatController.class
+com\auction\manager\controller\UploadController.class
+com\auction\manager\controller\GoodsDescController.class
+com\auction\manager\controller\BrandController.class
+com\auction\manager\controller\ContentCategoryController.class
+com\auction\manager\controller\SpecificationController.class

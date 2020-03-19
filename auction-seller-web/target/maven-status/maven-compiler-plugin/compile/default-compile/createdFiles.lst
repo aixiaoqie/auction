@@ -1,0 +1,7 @@
+com\auction\seller\controller\GoodsController.class
+com\auction\seller\authentication\UserDetailsServiceImpl.class
+com\auction\seller\controller\ItemCatController.class
+com\auction\seller\controller\TypeTemplateController.class
+com\auction\seller\controller\SellerController.class
+com\auction\seller\controller\UploadController.class
+com\auction\seller\controller\LoginController.class
